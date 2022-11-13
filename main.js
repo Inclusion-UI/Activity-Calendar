@@ -33,7 +33,7 @@ function createWindow() {
 app.whenReady().then(async () => {
   await sequelize.authenticate();
   await sequelize.sync();
-  await seed();
+  await seed(calendar);
   createWindow();
 });
 
