@@ -1,0 +1,1 @@
+Make new theme minify = sass bootstrap_theme.scss:bootstrap.min.css --style compressed

@@ -1,0 +1,23 @@
+:root {
+  --small-font-size: calc(14px + 4 * ((100vw - 768px) / (1920 - 768)));
+  --medium-font-size: calc(16px + 4 * ((100vw - 768px) / (1920 - 768)));
+  --large-font-size: calc(18px + 4 * ((100vw - 768px) / (1920 - 768)));
+  --xlarge-font-size: calc(20px + 4 * ((100vw - 768px) / (1920 - 768)));
+}
+
+.fs-small {
+  font-size: var(--small-font-size);
+}
+
+.fs-md {
+  font-size: var(--medium-font-size);
+}
+
+h3,
+.fs-lg {
+  font-size: var(--large-font-size);
+}
+
+.fs-xl {
+  font-size: var(--xlarge-font-size);
+}

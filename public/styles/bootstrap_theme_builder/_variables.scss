@@ -1,0 +1,131 @@
+// Simplex 5.2.1
+// Bootswatch
+
+$theme: "activity" !default;
+
+//
+// Color system
+//
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #ddd !default;
+$gray-300: #ccc !default;
+$gray-400: #bbb !default;
+$gray-500: #adb5bd !default;
+$gray-600: #777 !default;
+$gray-700: #444 !default;
+$gray-800: #373a3c !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #2cb8f0 !default;
+$indigo: #6610f2 !default;
+$purple: #9b479f !default;
+$pink: #d191da !default;
+$red: #da1f2e !default;
+$orange: #d9831f !default;
+$yellow: #ffc107 !default;
+$green: #469408 !default;
+$teal: #fbd988 !default;
+$teal-light: #fbebcc !default;
+$cyan: #029acf !default;
+
+$primary: $blue !default;
+$secondary: $teal !default;
+$success: $green !default;
+$info: $gray-100 !default;
+$warning: $orange !default;
+$danger: $purple !default;
+$light: $white !default;
+$dark: $black !default;
+
+$min-contrast-ratio: 2.8 !default;
+
+// Body
+
+$body-bg: $teal !default;
+
+// Fonts
+
+$font-weight-normal: 500 !default;
+
+// stylelint-disable-next-line value-keyword-case
+$font-family-sans-serif: "Work Sans", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+// Dropdowns
+
+$dropdown-link-hover-color: $white !default;
+$dropdown-link-hover-bg: $primary !default;
+
+// Navs
+
+$nav-link-padding-y: 0.9rem !default;
+$nav-link-disabled-color: $gray-400 !default;
+$nav-tabs-border-color: darken(#fff, 6.5%) !default;
+
+// Navbar
+
+$navbar-dark-color: rgba($white, 0.75) !default;
+$navbar-dark-hover-color: $white !default;
+
+// Pagination
+
+$pagination-border-color: $nav-tabs-border-color !default;
+$pagination-hover-color: $white !default;
+$pagination-hover-bg: $primary !default;
+$pagination-hover-border-color: $primary !default;
+$pagination-disabled-color: $gray-400 !default;
+$pagination-disabled-border-color: $pagination-border-color !default;
+
+// Cards
+
+$card-border-color: $nav-tabs-border-color !default;
+
+// Popovers
+
+$popover-border-color: $nav-tabs-border-color !default;
+
+// Modals
+
+$modal-content-border-color: $nav-tabs-border-color !default;
+$modal-header-border-color: $nav-tabs-border-color !default;
+
+$offcanvas-backdrop-opacity: 0.1 !default;
+
+// Progress bars
+
+$progress-bar-color: $primary !default;
+
+// List group
+
+$list-group-border-color: $nav-tabs-border-color !default;
+$list-group-disabled-bg: $nav-tabs-border-color !default;
+$list-group-bg: transparent !default;
+
+// Breadcrumbs
+
+$breadcrumb-padding-y: 0.375rem !default;
+$breadcrumb-padding-x: 0.75rem !default;
+$breadcrumb-border-radius: 0.25rem !default;
+
+$btn-close-focus-shadow: 0 !default;
+
+// Base element
+
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+
+// input
+
+$input-focus-box-shadow: 0 !default;
+
+// range input
+
+$form-range-track-bg: $dark !default;
+$form-range-track-height: 0.1rem !default;
+$form-range-thumb-bg: $teal !default;
+$form-range-thumb-border: 1px solid black !default;
+$form-range-thumb-width: 1.5rem !default;

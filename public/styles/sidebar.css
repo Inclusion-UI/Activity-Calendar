@@ -6,7 +6,8 @@
   display: inline;
   float: left;
   height: 100%;
-  width: 2vw; /*Larger sidebar changes: Sidebar toggle is slightly wider - Kyle*/
+
+  /*Larger sidebar changes: Sidebar toggle is slightly wider - Kyle*/
 }
 
 .sidebar::after {
@@ -14,27 +15,23 @@
 }
 
 .sidemenu {
-  position: absolute;
-  right: -30vw; /*Larger sidebar changes: Offset more to the left for new size - Kyle*/
-  /*right: -21vw;*/ /*Old size*/
-  background-color: #fbd988;
-  width: 29.5vw !important;
+  position: fixed;
+  right: 0;
+  width: fit-content;
   height: 100%;
+  max-width: 40vw;
   transition: 0.4s;
-  /*overflow: scroll !important;*/
   z-index: 1; /*Place in front of cloned image elemnts*/
+  background-image: url(../misc/handle.png);
 }
-.menuOnLeft table::-webkit-scrollbar,
-.sidemenu table::-webkit-scrollbar {
-  display: none !important;
+
+#toggleBar {
+  cursor: pointer;
 }
 
 .sidemenu table,
 .menuOnLeft table {
-  position: absolute;
-  display: inline;
   height: 100%;
-  width: 30.1vw;
   overflow: scroll !important;
   overflow-x: hidden !important;
 }
@@ -69,13 +66,17 @@
 .settings-area td:nth-child(2) {
   grid-column: 2 / 4;
 }
-#transportation-imgs-row,
-#activities-imgs-row {
-  display: grid;
-  grid-template-columns: repeat(4, 7.5vh);
-  grid-gap: 26px;
-  text-align: center;
-  margin: 30px 10px 10px 25px;
+
+#activities-search-bar {
+  width: 80%;
+  padding: 5px;
+  font-family: Billionary, serif;
+  font-size: --medium-font-size;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgrey;
 }
 
 .settings-area {
@@ -83,18 +84,14 @@
   grid-template-rows: 2vh;
 }
 
-.img-row-title {
-  text-align: left;
-}
-
 /* left toggle settings */
 .menuOnLeft {
-  position: absolute;
+  position: fixed;
   left: 0px;
-  background-color: #fbd988;
-  width: 31.3vw;
+  width: fit-content;
+  max-width: 40vw;
   transition: 0.4s;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
 }
 .barOnLeft {
@@ -106,79 +103,30 @@
   width: 2vw;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 28px;
+.horizontal-scroll {
+  overflow-x: scroll;
+  white-space: nowrap;
+  cursor: grab;
 }
 
-.switch input {
-  opacity: 0;
+.vertical-scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  cursor: grab;
+}
+
+.vertical-scroll::-webkit-scrollbar,
+.horizontal-scroll::-webkit-scrollbar {
   width: 0;
-  height: 0;
 }
 
-.switch-title,
-.switch-title-left {
-  display: inline;
-  font-size: 0.8rem;
-  font-weight: 600;
+.img-wrapper img {
+  object-fit: cover;
+  display: flex;
 }
 
-@media only screen and (min-width: 1824px) {
-  .settings-area td:nth-child(2) {
-    margin-left: 80px;
-  }
-  .img-row-title {
-    font-size: 1.5rem;
-    text-align: left;
-    padding-left: 1vw;
-    padding-top: 1.5vw;
-  }
-
-  .sidemenu {
-    padding-right: 15px;
-    width: 31.3vw !important;
-  }
-
-  #people-imgs-row,
-  #popular-imgs-row,
-  .settings-area {
-    grid-gap: 2vh 3.5vh;
-    margin: 30px 20px;
-  }
-
-  #transportation-imgs-row,
-  #activities-imgs-row {
-    grid-gap: 2vh 3.28vh;
-    margin: 20px 20px;
-  }
-
-  #transportation-imgs-row {
-    /*grid-template-rows: 6vh 6vh;*/
-    grid-template-columns: repeat(4, 7.5vh);
-  }
-
-  #activities-imgs-row {
-    /*grid-auto-rows: 6vh;*/
-    grid-template-columns: repeat(4, 7.5vh);
-  }
-
-  #people-imgs-row {
-    margin-left: 33.4px;
-  }
-
-  .menuOnLeft table #people-imgs-row {
-    margin-left: 20px;
-    margin-right: 33.4px;
-  }
-
-  .settings-area {
-    margin-top: 1vh;
-    grid-template-rows: 3vh;
-    grid-template-columns: 3vw 3vw 3vw 22vw;
-  }
+#divSidemenu[sidemenu-is-visible="false"] > #toggleBar {
+  width: 2vw;
 }
 
 .symbol {
@@ -187,7 +135,6 @@
   text-align: center;
   font-size: 10px;
   overflow: hidden;
-  height: 100%;
   aspect-ratio: 1;
 }
 
@@ -216,4 +163,35 @@
 .transportation-symbol img {
   aspect-ratio: 1;
   padding: 15px;
+}
+
+#transportation-imgs-row,
+#activities-imgs-row {
+  grid-gap: 2vh 3.28vh;
+  margin: 20px 20px;
+}
+
+#transportation-imgs-row {
+  /*grid-template-rows: 6vh 6vh;*/
+  grid-template-columns: repeat(4, 7.5vh);
+}
+
+#activities-imgs-row {
+  /*grid-auto-rows: 6vh;*/
+  grid-template-columns: repeat(4, 7.5vh);
+}
+
+#people-imgs-row {
+  margin-left: 33.4px;
+}
+
+.menuOnLeft table #people-imgs-row {
+  margin-left: 20px;
+  margin-right: 33.4px;
+}
+
+.settings-area {
+  margin-top: 1vh;
+  grid-template-rows: 3vh;
+  grid-template-columns: 3vw 3vw 3vw 22vw;
 }

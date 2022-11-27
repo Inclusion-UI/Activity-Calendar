@@ -6,31 +6,32 @@ const toggleSidemenu = (() => {
 
   // Slide-in library menu functionality initialization
   return () => {
-    const sideMenu = document.querySelector(".sidemenu");
+    const sideMenu = document.getElementById("divSidemenu");
     sideMenu.style[isLeft ? "left" : "right"] = open
       ? isLeft
-        ? "-29.5vw"
-        : "-30vw"
+        ? "0px"
+        : "0px"
       : "0px";
 
     document
       .querySelector("#divSidemenu")
       .setAttribute("sidemenu-is-visible", !open);
+    document.getElementById("menuWrapper").classList.toggle("d-none");
 
     open = !open;
   };
 })();
 
+document.getElementById("toggleBar").addEventListener("click", toggleSidemenu);
+
 function setUpDate() {
   var page = window.location.pathname.split("/").pop();
 
   if (page === "index.html") {
-    const days = document.querySelectorAll(
-      "div.p1 table tr th:not(.extra-col)"
-    );
+    const days = document.querySelectorAll("#p1 table tr th:not(.extra-col)");
 
     const containers = document.querySelectorAll(
-      "div.p1 table tr td:not(.extra-col)"
+      "#p1 table tr td:not(.extra-col)"
     );
 
     let day = new Date().getDay();
@@ -70,7 +71,7 @@ const getSymbolsById = async () => {
 const createSymbolElement = (symbol) => {
   const symbolEl = document.createElement("div");
   symbolEl.classList.add("symbol");
-  symbolEl.classList.add(`${symbol.type}-symbol`);
+  symbolEl.classList.add(`${symbol.type}-symbol`, "col-2", "ms-2", "mb-2");
   symbolEl.setAttribute("data-id", symbol.id);
 
   const img = document.createElement("img");
@@ -103,10 +104,7 @@ const createSymbolPlacementElement = (symbolsById, placement) => {
 
 const initSymbolLibrary = (symbols) => {
   const populateRow = (row, symbol) => {
-    const cell = document.createElement("td");
-
-    cell.appendChild(createSymbolElement(symbol));
-    row.appendChild(cell);
+    row.appendChild(createSymbolElement(symbol));
   };
 
   // Add types that don't have categories.
@@ -133,19 +131,17 @@ const initSymbolLibrary = (symbols) => {
   for (const [category, symbols] of Object.entries(categoryToSymbol)) {
     const tableBody = document.getElementById("img-library-table");
 
-    const tr = document.createElement("tr");
+    const title = document.createElement("h3");
+    title.classList.add("fw-semibold", "px-3", "mt-2");
+    title.setAttribute("id", "activities-img-row-title");
+    title.textContent = category;
 
-    const th = document.createElement("th");
-    th.setAttribute("colspan", "4");
-    th.setAttribute("id", "activities-img-row-title");
-    th.classList.add("img-row-title");
-    th.innerHTML = category;
-    tr.appendChild(th);
+    tableBody.appendChild(title);
 
-    tableBody.appendChild(tr);
-
-    const row = document.createElement("tr");
+    const row = document.createElement("div");
+    row.classList.add("d-flex", "row", "px-2", "py-3", "w-100");
     row.setAttribute("id", "activities-imgs-row");
+
     tableBody.appendChild(row);
 
     for (const symbol of symbols) {
@@ -155,7 +151,7 @@ const initSymbolLibrary = (symbols) => {
 };
 
 const initSymbolPlacements = async (symbolsById, symbolPlacements) => {
-  for (placement of symbolPlacements) {
+  for (const placement of symbolPlacements) {
     document.body.append(createSymbolPlacementElement(symbolsById, placement));
   }
 };
@@ -200,6 +196,8 @@ const getWeekBoundaries = (now, inCurrentWeek) => {
   const dragMoveEvents = ["touchmove", "mousemove"];
   const dragEndEvents = ["touchend", "mouseup"];
 
+  const sideMenuWrapper = document.getElementById("divSidemenu");
+
   let delay;
 
   function clickDrag() {
@@ -217,7 +215,9 @@ const getWeekBoundaries = (now, inCurrentWeek) => {
 
       const dragStart = (event) => {
         removeDelayChecks();
-
+        document.querySelector(".isLeftToggle").checked
+          ? (sideMenuWrapper.style.left = "-100%")
+          : (sideMenuWrapper.style.right = "-100%");
         if (!symbol.classList.contains("symbol-placement")) {
           const clone = symbol.cloneNode(true);
           clone.setAttribute("listener", "false");
@@ -276,6 +276,9 @@ const getWeekBoundaries = (now, inCurrentWeek) => {
 
         // (3) drop the image, remove unneeded handlers
         const dragEnd = (endEvent) => {
+          document.querySelector(".isLeftToggle").checked
+            ? (sideMenuWrapper.style.left = 0)
+            : (sideMenuWrapper.style.right = 0);
           hideDeletionBox();
           dragMoveEvents.forEach((event) =>
             document.removeEventListener(event, centerImageUnderPointer)
@@ -296,8 +299,7 @@ const getWeekBoundaries = (now, inCurrentWeek) => {
 
           // We preemptively remove the symbol and have later logic add it back
           // in when appropriate.
-          document.body.removeChild(symbol);
-
+          symbol.remove();
           // Check if in deletion area
           if (pageY < deletionBoxBottom) {
             if (symbolPlacementId) {
@@ -374,7 +376,6 @@ const getWeekBoundaries = (now, inCurrentWeek) => {
 
   initSymbolLibrary(Object.values(symbolsById));
   initSymbolPlacements(symbolsById, symbolPlacements);
-
   //check for new clones every 3 secs
   setInterval(() => {
     clickDrag();

@@ -1,56 +1,21 @@
-/* .week-link-btn-text {
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    font-family: 'Billionary';
-    vertical-align: middle; /*WIP week button changes: centered text (NOTE: NOT WORKING)*/
-
-.this-week-link,
-.next-week-link {
+/* #switch_week_button {
+  background-color: #2cb8f0;
   color: white;
   padding: 15px;
-  width: 15%;
-  height: 2%;
   text-decoration: none;
   text-align: center;
-  /*  font-family: 'Billionary';*/
   vertical-align: middle;
-  font-size: 2rem;
-}
+  min-width: 300px;
+} */
 
-.next-week-link {
-  background-color: #2cb8f0;
-  position: fixed;
-  right: 1.5%;
-  bottom: 0;
-}
-
-.this-week-link {
-  background-color: #e844f4;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-
-.this-week-link i {
-  margin-right: 50px;
-}
-
-.next-week-link i {
-  margin-left: 50px;
+#switch_week_button:hover {
+  color: white;
 }
 
 @media only screen and (min-width: 2160px) {
   .this-week-link,
   .next-week-link {
     height: 2.3%;
-  }
-}
-
-@media only screen and (max-width: 1824px) {
-  .this-week-link,
-  .next-week-link {
-    right: 0.5%;
   }
 }
 

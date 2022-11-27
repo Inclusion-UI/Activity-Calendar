@@ -17,9 +17,9 @@
     />
   </head>
 
-  <body>
+  <body class="d-flex row">
     <input style="display: none" id="hdnWeek" value="1" />
-    <div class="p1" id="p1">
+    <div class="col-12 position-relative h-100" id="p1">
       <div
         class="trash-box-container deletion-box"
         id="trash-box-container"
@@ -36,7 +36,9 @@
           ondragleave="removeDeletionBox()"
         >
           <!--Change the 'th' class selectors to their proper days-->
-          <th class="this-week" id="this-week">This Week</th>
+          <th class="this-week text-center fs-large bg-light" id="this-week">
+            This Week
+          </th>
           <th class="monday-col" id="monday-col">
             <img
               src="week_images/monday.png"
@@ -86,10 +88,9 @@
               alt="Sunday"
             />
           </th>
-          <th class="tuesday-col" id="extra-col" style="width: 43px"></th>
         </tr>
         <tr>
-          <th class="time-of-day" id="morning-row">
+          <th class="time-of-day bg-white" id="morning-row">
             <img src="time_of_day/morning.png" alt="Morning" />
           </th>
           <td class="monday-col"></td>
@@ -99,16 +100,9 @@
           <td class="friday-col"></td>
           <td class="saturday-col"></td>
           <td class="sunday-col"></td>
-          <td
-            class="extra-col"
-            style="
-              border-bottom: 2px solid transparent;
-              border-top: 2px solid transparent;
-            "
-          ></td>
         </tr>
         <tr class="border-row">
-          <th class="time-of-day" id="afternoon-row">
+          <th class="time-of-day bg-white" id="afternoon-row">
             <img src="time_of_day/afternoon.png" alt="Afternoon" />
           </th>
           <td class="monday-col"></td>
@@ -118,16 +112,9 @@
           <td class="friday-col"></td>
           <td class="saturday-col"></td>
           <td class="sunday-col"></td>
-          <td
-            class="extra-col"
-            style="
-              border-bottom: 2px solid transparent;
-              border-top: 2px solid transparent;
-            "
-          ></td>
         </tr>
         <tr>
-          <th class="time-of-day" id="evening-row">
+          <th class="time-of-day bg-white" id="evening-row">
             <img src="time_of_day/evening.png" alt="Evening" />
           </th>
           <td class="monday-col"></td>
@@ -137,51 +124,69 @@
           <td class="friday-col"></td>
           <td class="saturday-col"></td>
           <td class="sunday-col"></td>
-          <td class="extra-col"></td>
         </tr>
       </table>
-      <a class="next-week-link" href="next_week.html"
-        ><span>Next Week</span
-        ><i class="fas fa-arrow-right" aria-hidden="true"></i
+
+      <a
+        id="switch_week_button"
+        type="button"
+        href="./next_week.html"
+        class="d-flex justify-content-center align-items-center position-absolute bottom-0 end-0 px-4 py-2 fs-lg btn btn-primary text-white col-4"
+      >
+        <span class="col-8">Next Week</span>
+        <i class="fas fa-arrow-right col-4" aria-hidden="true"></i
       ></a>
     </div>
-
-    <div class="sidemenu" id="divSidemenu" sidemenu-is-visible="false">
+    <div
+      class="sidemenu d-flex flex-row"
+      id="divSidemenu"
+      sidemenu-is-visible="false"
+    >
       <img
         src="misc/handle.png"
         alt="click"
-        class="sidebar initSidebar"
+        class="sidebar initSidebar col-1"
         id="toggleBar"
-        onclick="toggleSidemenu()"
       />
-      <table aria-describedby="Sidebar Table">
-        <tbody id="img-library-table">
-          <tr class="settings-area">
-            <td>
+      <div
+        class="col-11 h-100 d-none bg-secondary"
+        id="menuWrapper"
+        aria-describedby="Sidebar Table"
+      >
+        <div
+          id="img-library-table"
+          class="row flex-nowrap flex-column w-100 h-100 vertical-scroll pb-3"
+        >
+          <div class="row d-flex justify-content-around py-2">
+            <div class="d-flex justify-content-center align-items-center col-3">
               <label class="switch">
-                <input type="checkbox" class="isLeftToggle" />
+                <input type="checkbox" class="isLeftToggle" id="toggle_left" />
                 <span class="slider round" onclick="switchToLeft()"></span>
               </label>
-            </td>
-            <td><span class="switch-title">Switch to left</span></td>
-            <td class="settings-icon">
+            </div>
+            <span class="switch-title col-4 text-center">Switch to left</span>
+            <div class="settings-icon col-3">
               <i
                 class="fas fa-cog"
                 onclick="goToSettings()"
                 aria-hidden="true"
               ></i>
-            </td>
-          </tr>
-          <!--People category-->
-          <tr id="people-imgs-row"></tr>
-          <!--Transportation category-->
-          <tr id="transportation-imgs-row"></tr>
-          <!--Activities category dynamically inserted below-->
-        </tbody>
-      </table>
+            </div>
+          </div>
+          <!--"Transportation" category-->
+          <div
+            class="d-flex row px-2 py-3 w-100"
+            id="transportation-imgs-row"
+          ></div>
+        </div>
+      </div>
     </div>
-    <script type="text/javascript" src="./scripts/script.js"></script>
-    <script type="text/javascript" src="./scripts/toggle.js"></script>
-    <script type="text/javascript" src="./scripts/deletion-box.js"></script>
+    <script type="module" src="./scripts/script.js" defer></script>
+    <script type="text/javascript" src="./scripts/toggle.js" defer></script>
+    <script
+      type="text/javascript"
+      src="./scripts/deletion-box.js"
+      defer
+    ></script>
   </body>
 </html>
