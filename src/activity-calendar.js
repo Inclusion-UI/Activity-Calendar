@@ -57,6 +57,14 @@ class ActivityCalendar {
     return symbols.map(serializeSymbolModel);
   }
 
+  async getCategories() {
+    const categories = await models.category.findAll({
+      raw: true,
+    });
+    return categories;
+  };
+  
+
   // `categoryId` is only valid for Activities.
   async createSymbol(imagePath, name, type, posX, posY, zoom, categoryId) {
     const ext = path.parse(imagePath).ext;
@@ -84,6 +92,14 @@ class ActivityCalendar {
     });
 
     return serializeSymbolModel(symbol);
+  }
+
+  async createCategory(name) {
+    const category = await models.category.create({
+      name,
+    });
+
+    return category.dataValues;
   }
 
   async getSymbolPlacements(dateStart, dateEnd) {
@@ -143,3 +159,5 @@ class ActivityCalendar {
 module.exports = {
   ActivityCalendar,
 };
+
+
