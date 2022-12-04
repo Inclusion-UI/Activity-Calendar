@@ -25,4 +25,15 @@ slider.onchange = function () {
   });
 };
 
+function goToSymbolCreator() {
+  console.log("symbol creator cog has been clicked.");
+  window.location.href = "symbol_creator.html";
+}
+
+function goToSymbolLibrary() {
+  console.log("symbol library cog has been clicked.");
+  window.location.href = "symbol_library.html";
+}
+
+
 initializeSettings();

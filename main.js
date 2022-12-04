@@ -52,6 +52,12 @@ ipcMain.handle("get-symbols", async () => {
   return calendar.getSymbols();
 });
 
+// get categories
+ipcMain.handle('get-categories', async (event) => {
+  return calendar.getCategories();
+});
+
+
 ipcMain.handle(
   "create-symbol",
   async (event, imagePath, name, type, posX, posY, zoom, categoryId) => {
@@ -88,3 +94,10 @@ ipcMain.handle(
 ipcMain.handle("delete-symbol-placement", async (event, id) => {
   return calendar.deleteSymbolPlacement(id);
 });
+
+
+ipcMain.handle('select-image', (event) => {
+  return dialog.showOpenDialog({properties: ['openFile']});
+});
+
+

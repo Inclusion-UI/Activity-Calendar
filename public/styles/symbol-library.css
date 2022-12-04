@@ -1,0 +1,15 @@
+#categoryList{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding:20px;
+}
+
+
+.category{
+    border-bottom: 1px solid #000000;
+    padding: 5px 10px;
+    font-size: 24px;
+    text-decoration: none;
+    cursor: pointer;
+}
