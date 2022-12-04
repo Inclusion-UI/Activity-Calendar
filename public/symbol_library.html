@@ -20,8 +20,21 @@
 </head>
 
 <body class="settings-body">
+
+    <div id="createCategory" class="hidden">
+        <div id="createCategoryContainer">
+            <div id="categoryClose" onclick="closeCategoryCreator()">Close</div>
+            <input type="text" id="categoryName" placeholder="Category Name">
+            <button id="createCategoryButton" onclick="createCategory()">Create</button>
+        </div>
+    </div>
+
     <div class="container-fluid my-settings">
-        <h2 class="title">Symbol Library</h2>
+        <div class="title">
+            <h2 class="title">Symbol Library</h2>
+            <button class="btn btn-primary" onclick="categoryPopUp()">Create New Category</button>
+        </div>
+       
 
         
       

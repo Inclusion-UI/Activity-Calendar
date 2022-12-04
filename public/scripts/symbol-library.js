@@ -12,6 +12,23 @@ const ipcSettingsRenderer = require("electron").ipcRenderer;
 
 const fs = require("fs");
 
+function categoryPopUp() {
+    var categoryPopUp = document.getElementById("createCategory");
+    categoryPopUp.className = "visible";
+}
+
+function createCategory() {
+    var categoryName = document.getElementById("categoryName").value;
+    ipcSettingsRenderer.invoke("create-category", categoryName);
+    var categoryPopUp = document.getElementById("createCategory");
+    categoryPopUp.className = "hidden";
+    makeCategoryList();
+}
+
+function closeCategoryCreator() {
+    var categoryPopUp = document.getElementById("createCategory");
+    categoryPopUp.className = "hidden";
+}
 
 function getCategories() {
     return ipcSettingsRenderer.invoke("get-categories").then((categories) => {
@@ -30,29 +47,38 @@ function getSymbols() {
 var _categories;
 
 console.log('libdeyim')
-getCategories().then((categories) => {
-    console.log(categories);
-    _categories = categories;
-    var categoryList = document.getElementById("categoryList");
-    for (var i = 0; i < categories.length; i++) {
-        var category = categories[i];
-        var categoryDiv = document.createElement("div");
-        categoryDiv.classList.add("category");
-        categoryDiv.id = category.id;
 
-        var categoryLabel = document.createElement("label");
-        categoryLabel.classList.add("categoryLabel");
-        categoryLabel.innerHTML = category.name;
-
-       
-
-        categoryDiv.appendChild(categoryLabel);
-        categoryList.appendChild(categoryDiv);
-    }
-    getSymbols().then((symbols) => {
-        console.log(symbols);
+function makeCategoryList() {
+    getCategories().then((categories) => {
+        console.log(categories);
+        _categories = categories;
+        var categoryList = document.getElementById("categoryList");
+        categoryList.innerHTML = "";
+        for (var i = 0; i < categories.length; i++) {
+            var category = categories[i];
+            var categoryDiv = document.createElement("div");
+            categoryDiv.classList.add("category");
+            categoryDiv.id = category.id;
+    
+            var categoryLabel = document.createElement("label");
+            categoryLabel.classList.add("categoryLabel");
+            categoryLabel.innerHTML = category.name;
+    
+           
+    
+            categoryDiv.appendChild(categoryLabel);
+            categoryList.appendChild(categoryDiv);
+        }
+        getSymbols().then((symbols) => {
+            console.log(symbols);
+        });
     });
-});
+}
+
+makeCategoryList();
+
+
+
 
 
 

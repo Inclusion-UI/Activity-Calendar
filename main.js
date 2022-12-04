@@ -101,3 +101,6 @@ ipcMain.handle('select-image', (event) => {
 });
 
 
+ipcMain.handle('create-category', async (event, name) => {
+  return calendar.createCategory(name);
+});

@@ -94,6 +94,14 @@ class ActivityCalendar {
     return serializeSymbolModel(symbol);
   }
 
+  async createCategory(name) {
+    const category = await models.category.create({
+      name,
+    });
+
+    return category.dataValues;
+  }
+
   async getSymbolPlacements(dateStart, dateEnd) {
     const placements = await models.symbolPlacement.findAll({
       where: {

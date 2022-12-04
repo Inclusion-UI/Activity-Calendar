@@ -13,3 +13,47 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.hidden{
+  display: none;
+}
+
+.visible{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000005e;
+  top:0px;
+  left:0px;
+  z-index: 9999;
+}
+
+#createCategoryContainer{
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 200px;
+  border-radius: 30px;
+  border: solid 1px #000000;
+  background-color: #fbeacc;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#categoryClose{
+  position:absolute;
+  top:20px;
+  right:20px;
+  cursor: pointer;
+}
