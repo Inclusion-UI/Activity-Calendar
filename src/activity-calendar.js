@@ -19,6 +19,10 @@ const serializeSymbolPlacement = (symbolPlacement) => {
   return symbolPlacement.dataValues;
 };
 
+const serializeWeekTemplate = (weekTemplate) => {
+  return weekTemplate.dataValues;
+};
+
 class ActivityCalendar {
   static _USER_SETTINGS_ID = 1;
 
@@ -99,13 +103,27 @@ class ActivityCalendar {
     return placements.map(serializeSymbolPlacement);
   }
 
-  async createSymbolPlacement(symbolId, date, posX, posY) {
+  async getSymbolPlacementsForWeekTemplate(weekTemplateId) {
+    const placements = await models.symbolPlacement.findAll({
+      where: { weekTemplateId },
+    });
+    return placements.map(serializeSymbolPlacement);
+  }
+
+  async createSymbolPlacement(
+    symbolId,
+    date,
+    posX,
+    posY,
+    weekTemplateId = null
+  ) {
     return serializeSymbolPlacement(
       await models.symbolPlacement.create({
         symbolId,
         date,
         posX,
         posY,
+        weekTemplateId,
       })
     );
   }
@@ -131,6 +149,50 @@ class ActivityCalendar {
         `Unable to find existing to delete symbol placement with id ${id}.`
       );
     }
+  }
+
+  async getWeekTemplate(weekTemplateId) {
+    const weekTemplate = await models.weekTemplate.findByPk(weekTemplateId);
+    return serializeWeekTemplate(weekTemplate);
+  }
+
+  async createWeekTemplate(name, description = "") {
+    return serializeWeekTemplate(
+      await models.weekTemplate.create({ name, description })
+    );
+  }
+
+  async updateWeekTemplate(id, name, description) {
+    const [numRows] = await models.weekTemplate.update(
+      { name, description },
+      { where: { id } }
+    );
+    if (numRows === 0) {
+      throw Error(
+        `Unable to find existing to update week template with id ${id}.`
+      );
+    }
+  }
+
+  async deleteWeekTemplate(id) {
+    const numDestroyed = await models.weekTemplate.destroy({
+      where: { id },
+    });
+    if (numDestroyed === 0) {
+      throw Error(
+        `Unable to find existing to delete week template with id ${id}.`
+      );
+    }
+  }
+
+  async addSymbolToWeekTemplate(symbolId, posX, posY, weekTemplateId) {
+    await this.createSymbolPlacement(
+      symbolId,
+      null,
+      posX,
+      posY,
+      weekTemplateId
+    );
   }
 
   _log(message) {

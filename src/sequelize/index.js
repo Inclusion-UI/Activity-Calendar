@@ -25,6 +25,7 @@ const modelDefiners = [
   require("./models/symbol"),
   require("./models/symbol-placement"),
   require("./models/category"),
+  require("./models/week-template"),
 ];
 
 modelDefiners
