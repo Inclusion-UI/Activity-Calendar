@@ -6,7 +6,9 @@ Families or organisations with people in their care with learning disabilities/a
 
 We therefore have digitise this into a desktop app, which eliminates the upkeep of paper symbols, provides a rich interface for carers/support workers and the individual to interact can with a more modernized approach.
 
-All designs, assets and documentation can be found here
+
+## Designs,assets and documentation:
+This project has been paused. All designs, assets and documentation can be found here if you would like to develop this app further
 https://drive.google.com/drive/folders/1ATFii2BTh9N-RR74qysHiuziFgv152hk?usp=sharing
 
 ## How to Use:
